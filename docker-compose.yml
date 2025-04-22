@@ -1,0 +1,12 @@
+services:
+  remo:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: remo
+    tty: true
+    volumes:
+      - /app/node_modules 
+      - type: bind
+        source: ./
+        target: /app

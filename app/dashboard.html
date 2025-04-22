@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nature Remo Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        .chart-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        canvas {
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chart-container">
+        <h2>Nature Remo 温湿度・照度モニター</h2>
+        <canvas id="remoChart"></canvas>
+    </div>
+
+    <script>
+        const labels = [
+            "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00"
+        ];
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: '温度 (°C)',
+                    data: [23.4, 23.8, 24.1, 23.9, 24.2, 24.0, 23.7],
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    tension: 0.4,
+                },
+                {
+                    label: '湿度 (%)',
+                    data: [45, 47, 48, 46, 49, 50, 47],
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    tension: 0.4,
+                },
+                {
+                    label: '照度 (lx)',
+                    data: [300, 310, 320, 315, 305, 310, 295],
+                    borderColor: 'rgb(255, 206, 86)',
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    tension: 0.4,
+                }
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'white'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: 'white'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white'
+                        }
+                    }
+                }
+            }
+        };
+
+        const remoChart = new Chart(
+            document.getElementById('remoChart'),
+            config
+        );
+    </script>
+
+</body>
+
+</html>

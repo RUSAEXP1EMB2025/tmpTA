@@ -1,0 +1,8 @@
+FROM node:18.20-bullseye
+
+WORKDIR /app
+
+COPY . .
+
+RUN apt-get update && apt-get install -y git sudo
+RUN git config --system core.longpaths true
